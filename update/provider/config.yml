@@ -1,0 +1,44 @@
+mixed-port: 7890
+allow-lan: false
+mode: Rule
+log-level: info
+external-controller: 0.0.0.0:9090
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  nameserver:
+  - 1.1.1.1
+  - 8.8.8.8
+
+proxies:
+
+proxy-groups:
+  - name: 'Core'
+    type: select
+    proxies:
+   
+  - name: 'Ping'
+    type: url-test
+    url: 'https://www.gstatic.com/generate_204'
+    tolerance: 300
+    interval: 3600
+    proxies:
+
+rule-providers:
+  direct:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/Airuop/servers/main/rules/direct.yaml
+    path: ./ruleset/direct.yaml
+    interval: 432000
+  block:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/Airuop/servers/main/rules/block.yaml
+    path: ./ruleset/block.yaml
+    interval: 432000
+rules:
+  - RULE-SET,direct,DIRECT
+  - RULE-SET,block,REJECT
+  - MATCH,Core
