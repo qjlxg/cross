@@ -18,6 +18,7 @@ jobs:
   main:
     name: Collect & SpeedTest & Filter
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
     
       - uses: actions/checkout@v4
