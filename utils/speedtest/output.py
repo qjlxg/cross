@@ -3,8 +3,8 @@ import base64
 import os
 import time
 
+print("speedtest output running... ")
 out_json = './output.json'
-
 sub_all_base64 = "./sub/sub_merge_base64.txt"
 sub_all = "./sub/sub_merge.txt"
 Eternity_file_base64 = "./Eternity"
@@ -13,6 +13,8 @@ Eternity_Base = "./EternityBase"
 
 
 def read_json(file):  # 将 out.json 内容读取为列表
+
+    print("function read_json: ",file)
     while os.path.isfile(file) == False:
         # log
         #file_list = os.listdir("./")
@@ -27,6 +29,7 @@ def read_json(file):  # 将 out.json 内容读取为列表
 
 
 def output(list, num):
+    print("function output...")
     # sort base their avg speed rather than max speed which is default option
     list = sorted(list, key=lambda x: x['avg_speed'], reverse=True)
 
@@ -85,5 +88,6 @@ def output(list, num):
 
 if __name__ == '__main__':
     num = 200
+    print(f'start app for select {num} server...')
     value = read_json(out_json)
     output(value, value.__len__() if value.__len__() <= num else num)
