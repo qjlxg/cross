@@ -28,9 +28,12 @@ echo -e "Done."
 
 # Run LiteSpeedTest with configuration and logging
 echo -e "Running LiteSpeedTest..."
-sudo nohup ./lite-linux-amd64 --config ./lite_config.json --test "$SUB_MERGE_YAML_URL" > "$LOG_FILE" 2>&1 &
-echo -e "LiteSpeedTest running in background. Log file: $LOG_FILE"
+# sudo nohup ./lite-linux-amd64 --config ./lite_config.json --test "$SUB_MERGE_YAML_URL" > "$LOG_FILE" 2>&1 &
+sudo  ./lite-linux-amd64 --config ./lite_config.json --test "$SUB_MERGE_YAML_URL" > "$LOG_FILE" 2>&1 &
+
+echo -e "LiteSpeedTest Finished."
+exit
 
 # Show log output in real-time
-echo -e "Log output:"
-tail -f "$LOG_FILE"
+# echo -e "Log output:"
+# tail -f "$LOG_FILE"
