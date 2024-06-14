@@ -7,30 +7,30 @@ SUB_MERGE_YAML_URL="https://raw.githubusercontent.com/Airuop/cross/master/sub/su
 LOG_FILE="speedtest.log"
 
 # Download LiteSpeedTest binary
-echo "Downloading LiteSpeedTest binary..."
+cat <<<  "Downloading LiteSpeedTest binary..."
 wget -q -O lite-linux-amd64.gz "$LITE_SPEEDTEST_URL"
-echo "Download complete."
+cat <<<  "Download complete."
 
 # Extract the binary
-echo "Extracting LiteSpeedTest binary..."
+cat <<<  "Extracting LiteSpeedTest binary..."
 gzip -d lite-linux-amd64.gz
-echo "Extraction complete."
+cat <<<  "Extraction complete."
 
 # Download LiteSpeedTest configuration
-echo "Downloading LiteSpeedTest configuration..."
+cat <<<  "Downloading LiteSpeedTest configuration..."
 wget -q -O lite_config.json "$LITE_CONFIG_URL"
-echo "Download complete."
+cat <<<  "Download complete."
 
 # Make the binary executable
-echo "Making LiteSpeedTest binary executable..."
+cat <<<  "Making LiteSpeedTest binary executable..."
 chmod +x ./lite-linux-amd64
-echo "Done."
+cat <<<  "Done."
 
 # Run LiteSpeedTest with configuration and logging
-echo "Running LiteSpeedTest..."
+cat <<<  "Running LiteSpeedTest..."
 sudo nohup ./lite-linux-amd64 --config ./lite_config.json --test "$SUB_MERGE_YAML_URL" > "$LOG_FILE" 2>&1 &
-echo "LiteSpeedTest running in background. Log file: $LOG_FILE"
+cat <<<  "LiteSpeedTest running in background. Log file: $LOG_FILE"
 
 # Show log output in real-time
-echo "Log output:"
+cat <<<  "Log output:"
 tail -f "$LOG_FILE"
